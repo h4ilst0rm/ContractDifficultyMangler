@@ -39,6 +39,7 @@
   <ItemGroup>
     <!-- Allows to access internal and private members without Harmony Traverse, do not use if inheriting from classes made public -->
     <PackageReference Include="Krafs.Publicizer" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <!-- Main game library, best to publicize it to access internals easily and efficiently -->
     <Publicize Include="Assembly-CSharp" />
   </ItemGroup>

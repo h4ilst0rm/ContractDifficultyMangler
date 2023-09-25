@@ -1,17 +1,31 @@
 ﻿using HarmonyLib;
 using HBS.Logging;
-using System;
+using Newtonsoft.Json;
 
 namespace ContractDifficultyMangler;
 
+public class Settings
+{
+    public bool logDebug = false;
+
+    public int EasyContractDiff = 2;
+    public int MediumContractDiff = 5;
+    public int HardContractDiff = 8;
+
+    public int MediumContractStartDiff = 4;
+    public int HardContractStartDiff = 7;
+}
+
 public static class ModInit
 {
-    internal static Logger modLog;
+    public static Settings modSettings;
+    internal static ILog modLog;
 
-    public static void Init(string directory, string settings)
+    public static void Init(string settings)
     {
-        modLog = Logger.GetLogger(typeof(ModInit).Namespace);
-        modLog.Log("I did the thing");
+        modSettings = JsonConvert.DeserializeObject<Settings>(settings);
+
+        modLog = modSettings.logDebug ? Logger.GetLogger(typeof(ModInit).Namespace) : null;
 
         // apply all patches that are in classes annotated with [HarmonyPatch]
         Harmony.CreateAndPatchAll(typeof(ModInit).Assembly);

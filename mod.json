@@ -1,5 +1,0 @@
-{
-	"Name": "ContractDifficultyMangler",
-	"DLL": "ContractDifficultyMangler.dll",
-	"DLLEntryPoint": "ContractDifficultyMangler.Main.Start"
-}
